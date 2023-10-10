@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get "/sign-in", to: "sessions#new", as: "sign_in"
   post "/sign-in", to: "sessions#create"
   delete "/sign-out", to: "sessions#destroy"
+
+  resources :pools
 end
