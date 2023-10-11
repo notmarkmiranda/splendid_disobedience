@@ -1,0 +1,22 @@
+<div class="col-md-6 offset-md-3">
+  <h2>create new pool</h2>
+  <%= form_with model: @pool do |f| %>
+    <div class="mb-3">
+      <%= f.label :name, class: "form-label" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :locked_at, class: "form-label" %>
+      <div class="datetime">
+        <%= f.datetime_select :locked_at, { ampm: false } %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <%= f.submit "let's go!", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

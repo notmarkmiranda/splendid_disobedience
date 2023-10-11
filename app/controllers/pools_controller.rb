@@ -1,6 +1,13 @@
 class PoolsController < ApplicationController
+  def show
+    @pool = Pool.find(params[:id])
+  end
+
+  def new
+    @pool = current_user.pools.new
+  end
+
   def create
-    # @pool = current_user.admin_pools.new(pool_params)
     @pool = current_user.pools.new(pool_params)
     if @pool.save
       MembershipCreator.call(pool_id: @pool.id, user_id: current_user.id, role: 2)
