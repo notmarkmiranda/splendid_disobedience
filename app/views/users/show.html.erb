@@ -1,1 +1,8 @@
-Howdy <%= current_user.email %>
+<div>
+  <div class="user-show--action-buttons mb-3">
+    <%= link_to "New Pool", new_pool_path, class: "btn btn-outline-primary" %>
+  </div>
+  <p>
+    Howdy <%= current_user.email %>!
+  </p>
+</div>

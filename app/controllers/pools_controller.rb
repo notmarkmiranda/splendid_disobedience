@@ -1,4 +1,6 @@
 class PoolsController < ApplicationController
+  before_action :require_user, only: [:new, :create]
+  
   def show
     @pool = Pool.find(params[:id])
   end

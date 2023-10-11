@@ -1,5 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Pool, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:enum_vals) { {enrolling: 0, scoring: 1, finalized: 2} }
+
+  it { should define_enum_for(:status).with_values(enum_vals) }
 end
