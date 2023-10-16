@@ -1,8 +1,15 @@
-<div>
+<div class="row">
   <div class="user-show--action-buttons mb-3">
     <%= link_to "New Pool", new_pool_path, class: "btn btn-outline-primary" %>
   </div>
   <p>
     Howdy <%= current_user.email %>!
   </p>
+</div>
+<div class="row">
+  <% Pool.statuses.keys.each do |status| %>
+    <div class="col-md-4 mb-3">
+      <%= render partial: "pools_card", locals: {status: status}%>
+    </div>
+  <% end %>
 </div>

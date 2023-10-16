@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header">
+    <%= pool_card_title(status) %>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <%= pool_card_description(status) %>
+    </p>
+  </div>
+  <% if pools(current_user, status).any? %>
+    <div class="list-group list-group-flush">
+      <% pools(current_user, status).each do |pool| %>
+        <%= link_to pool.name, pool, class: "list-group-item list-group-item-action" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
