@@ -1,1 +1,5 @@
 <h2><%= @pool.name %></h2>
+
+<% if @pool.accepting_entries? %>
+  <h2>Accepting Entries!</h2>
+<% end %>
