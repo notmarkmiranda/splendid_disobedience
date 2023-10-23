@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :redirect_user, only: [:new, :create]
-  before_action :require_user, only: [:show]
+  before_action :redirect_user, only: %i[new create]
+  before_action :require_user, only: %i[show]
 
   def new
     @user = User.new

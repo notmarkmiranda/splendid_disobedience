@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PoolsController < ApplicationController
-  before_action :require_user, only: [:new, :create]
+  before_action :require_user, only: %i[new create]
 
   def show
     @pool = Pool.find(params[:id])
@@ -11,10 +13,10 @@ class PoolsController < ApplicationController
 
   def create
     @pool = current_user.pools.new(pool_params)
-    if @pool.save
-      MembershipCreator.call(pool_id: @pool.id, user_id: current_user.id, role: 2)
-      redirect_to @pool
-    end
+    return unless @pool.save
+
+    MembershipCreator.call(pool_id: @pool.id, user_id: current_user.id, role: 2)
+    redirect_to @pool
   end
 
   private
