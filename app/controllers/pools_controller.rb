@@ -4,7 +4,10 @@ class PoolsController < ApplicationController
   before_action :require_user, only: %i[new create]
 
   def show
-    @pool = Pool.find(params[:id])
+    @pool = Pool.includes(questions: :options).find(params[:id])
+    @question = @pool.questions.new
+
+    2.times { @question.options.build }
   end
 
   def new

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_23_030234) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_29_030933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_23_030234) do
     t.datetime "updated_at", null: false
     t.index ["pool_id"], name: "index_memberships_on_pool_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.string "body", null: false
+    t.boolean "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_options_on_question_id"
   end
 
   create_table "pools", force: :cascade do |t|
@@ -52,5 +61,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_23_030234) do
 
   add_foreign_key "memberships", "pools"
   add_foreign_key "memberships", "users"
+  add_foreign_key "options", "questions"
   add_foreign_key "questions", "pools"
 end

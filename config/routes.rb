@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   delete "/sign-out", to: "sessions#destroy"
 
   resources :pools
+  resources :questions
 end
