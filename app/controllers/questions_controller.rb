@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Controller for CRUDing a question
 class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)

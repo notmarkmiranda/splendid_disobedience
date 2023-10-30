@@ -1,6 +1,11 @@
 require "rails_helper"
 
 RSpec.describe Question, type: :model do
-  it { should belong_to :pool }
-  it { should have_many :options }
+  describe "validations & relationships" do
+    before { create(:question) }
+
+    it { should belong_to :pool }
+    it { should have_many :options }
+    it { should validate_uniqueness_of(:body).scoped_to(:pool_id).case_insensitive }
+  end
 end
