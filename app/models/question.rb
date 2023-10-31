@@ -5,6 +5,6 @@ class Question < ApplicationRecord
   belongs_to :pool
   has_many :options, dependent: :destroy
 
-  validates :body, uniqueness: {scope: :pool_id, case_sensitive: false}
+  validates :body, presence: true, uniqueness: {scope: :pool_id, case_sensitive: false}
   accepts_nested_attributes_for :options
 end

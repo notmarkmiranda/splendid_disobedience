@@ -4,7 +4,7 @@ class Pool < ApplicationRecord
   enum status: {enrolling: 0, scoring: 1, finalized: 2}
 
   def questions?
-    questions.any?
+    questions.where.not(id: nil).any?
   end
 
   def accepting_questions?

@@ -1,20 +1,29 @@
-<h2><%= @pool.name %></h2>
-
 <div class="row">
+  <h2>Pool Name: <%= @pool.name %></h2>
+  <hr />
   <div class="col-md-6">
   <% if @pool.questions? %>
-    <h2>Existing Questions</h2>
-    <% @pool.questions.each do |question| %>
-      <p><%= question.body %></p>
-    <% end %>
+    <h2>Props</h2>
+    <div class="list-group">
+      <% @pool.questions.except(@question).each do |question| %>
+        <div class="list-group-item">
+          <h4 class="list-group-item-heading"><%= question.body %></h4>
+          <% question.options.each do |option| %>
+            <li><%= option.body %></li>
+          <% end %>
+          Edit | Delete
+        </div>
+      <% end %>
+    </div>
   <% else %>
-    <h2>There are no Questions, Come back later</h2>
+    <h2>Nothing</h2>
+    <p>There are currently no questions, Come back later</p>
   <% end %>
   </div>
 
   <% if @pool.accepting_questions? %>
     <div class="col-md-6">
-      <h2>Accepting Entries!</h2>
+      <h2>Add a Prop</h2>
       <%= form_with model: @question do |f| %>
         <%= f.hidden_field :pool_id, value: @pool.id %>
         <div class="mb-3">
@@ -25,15 +34,9 @@
           <%= f.label :description, class: "form-label" %>
           <%= f.text_area :description, class: "form-control" %>
         </div>
-        <%= fields_for :options do |ff| %>
+        <%= f.fields_for :options do |ff| %>
           <div class="mb-3">
-            <%= ff.label :body, "Option 1", class: "form-label" %>
-            <%= ff.text_field :body, class: "form-control" %>
-          </div>
-        <% end %>
-        <%= fields_for :options do |ff| %>
-          <div class="mb-3">
-            <%= ff.label :body, "Option 2", class: "form-label" %>
+            <%= ff.label :body, "Option", class: "form-label" %>
             <%= ff.text_field :body, class: "form-control" %>
           </div>
         <% end %>

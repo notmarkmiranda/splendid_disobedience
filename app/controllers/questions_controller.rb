@@ -12,6 +12,13 @@ class QuestionsController < ApplicationController
     redirect_to @question.pool
   end
 
+  def destroy
+    question = Question.find(params[:id])
+    pool = question.pool
+    question.destroy
+    redirect_to pool
+  end
+
   private
 
   def question_params
@@ -20,9 +27,9 @@ class QuestionsController < ApplicationController
       :description,
       :pool_id,
       options_attributes:
-        %i[
-          body
-          correct
+        [
+          :body,
+          :correct
         ]
     )
   end
