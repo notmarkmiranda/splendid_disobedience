@@ -11,7 +11,7 @@
           <% question.options.each do |option| %>
             <li><%= option.body %></li>
           <% end %>
-          Edit | Delete
+          Edit | <%= button_to "Delete", question, method: :delete, class: "btn btn-outline-danger" %>
         </div>
       <% end %>
     </div>

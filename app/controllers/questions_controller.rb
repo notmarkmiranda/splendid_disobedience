@@ -12,6 +12,16 @@ class QuestionsController < ApplicationController
     redirect_to @question.pool
   end
 
+  def update
+    @question = Question.find(params[:id])
+    if @question.update(question_params)
+      flash[:notice] = "Question updated"
+    else
+      flash[:alert] = @question.errors.full_messages.join(", ")
+    end
+    redirect_to @question.pool
+  end
+
   def destroy
     question = Question.find(params[:id])
     pool = question.pool
@@ -28,6 +38,7 @@ class QuestionsController < ApplicationController
       :pool_id,
       options_attributes:
         [
+          :id,
           :body,
           :correct
         ]
