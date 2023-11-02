@@ -6,7 +6,7 @@ FactoryBot.define do
 
     factory :question_with_two_options do
       after(:create) do |question|
-        %w(dodgers lakers).each do |team|
+        %w[dodgers lakers].each do |team|
           create(:option, body: team, question: question)
         end
       end
