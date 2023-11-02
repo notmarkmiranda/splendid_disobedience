@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   post "/sign-in", to: "sessions#create"
   delete "/sign-out", to: "sessions#destroy"
 
-  resources :pools
+  resources :pools do
+    scope module: :pools do
+      resources :memberships, only: [:index, :new, :create]
+    end
+  end
   resources :questions
 end

@@ -1,6 +1,8 @@
-
 <div class="row">
   <h2>Pool Name: <%= @pool.name %></h2>
+  <div class="mb-4">
+    <%= link_to "Memberships", pool_memberships_path(@pool), class: "btn btn-primary btn-sm" %>
+  </div>
   <hr />
   <div class="col-md-6">
   <% if @pool.questions? %>

@@ -1,0 +1,18 @@
+<div class="col-md-6 offset-md-3">
+  <h2>invite a new person</h2>
+  <%= form_with model: [@pool, @membership] do |f| %>
+    <%= f.fields_for :user do |ff| %>
+      <div class="mb-3">
+        <%= ff.label :email, class: "form-label" %>
+        <%= ff.text_field :email, class: "form-control" %>
+      </div>
+    <% end %>
+    <div class="mb-3">
+      <%= f.label :role, class: "form-label" %>
+      <%= f.select :role, Membership.roles.except("superadmin"), {}, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.submit "let's go!", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
