@@ -12,6 +12,11 @@ class QuestionsController < ApplicationController
     redirect_to @question.pool
   end
 
+  def edit
+    @question = Question.includes(:pool, :options).find(params[:id])
+    @pool = @question.pool
+  end
+
   def update
     @question = Question.find(params[:id])
     if @question.update(question_params)
