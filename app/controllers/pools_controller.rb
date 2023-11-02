@@ -18,7 +18,12 @@ class PoolsController < ApplicationController
     @pool = current_user.pools.new(pool_params)
     return unless @pool.save
 
-    MembershipCreator.call(pool_id: @pool.id, user_id: current_user.id, role: 2)
+    MembershipCreator.call(
+      pool_id: @pool.id,
+      user_id: current_user.id,
+      role: 2,
+      status: 1
+    )
     redirect_to @pool
   end
 
